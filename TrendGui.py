@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtWidgets import QApplication, QTableWidget, QWidget
 from PyQt5.QtWidgets import QGridLayout, QVBoxLayout, QHBoxLayout
-from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QPushButton, QComboBox
 import sys
 import TrendScrape
 from TrendController import TrendCtrl
@@ -20,8 +20,25 @@ class TrendGui(QMainWindow):
         self.setCentralWidget(self.centralWidget)
         self.centralWidget.setLayout(self.generalLayout)
 
+        self.createTargetList()
         self.createButtonWidget()
         self.createTableWidget()
+
+    def createTargetList(self):
+        self.targetWidget = QWidget()
+        self.targetLayout = QHBoxLayout()
+        self.targetWidget.setLayout(self.targetLayout)
+
+        self.targetBox = QComboBox()
+
+        targetList = ['San francisco-Oakland-San Jose',
+                      'New York NY',
+                      'Dallas-FT. Worth TX',
+                      'Chicago IL']
+        self.targetBox.addItems(targetList)
+
+        self.targetLayout.addWidget(self.targetBox)
+        self.generalLayout.addWidget(self.targetWidget)
 
     """ Creates a table using QLabels"""    
     def createTableWidget(self):
@@ -51,6 +68,7 @@ class TrendGui(QMainWindow):
 
         self.startButton = QPushButton("Start")
         self.stopButton = QPushButton("Stop")
+        self.quitButton = QPushButton("Quit")
 
         self.buttonLayout.addWidget(self.startButton)
         self.buttonLayout.addWidget(self.stopButton)

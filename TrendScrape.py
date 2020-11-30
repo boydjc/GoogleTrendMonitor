@@ -6,7 +6,7 @@ import time
 
 class TrendScraper():
 
-    def __init__(self):
+    def __init__(self, target):
         # options for selenium
         self.options = Options()
         self.options.headless = True  # make the driver headless so that it does not require a browser window
@@ -21,7 +21,8 @@ class TrendScraper():
         self.profile.set_preference("browser.download.dir", self.downloadPath)
         self.profile.set_preference("browser.download.folderList", 2)
 
-        print("Starting WebDriver")
+        self.target = target
+
         self.driver = webdriver.Firefox(options=self.options, firefox_profile=self.profile, executable_path='C:\\Users\\charl\\Desktop\\GoogleTrendMonitor\\geckodriver.exe')
 
         self.scanStarted = False
@@ -32,7 +33,17 @@ class TrendScraper():
         do that here."""
     def initializeWebPage(self):
          # launch the driver
-        self.driver.get('https://trends.google.com/trends/explore?date=now%201-H&geo=US-NJ-501&q=stock')
+
+        # the url we get depends on our target
+
+        if(self.target == "San francisco-Oakland-San Jose"):
+            self.driver.get('https://trends.google.com/trends/explore?date=now%201-H&geo=US-CA-807&q=stock')
+        elif(self.target == "New York NY"):
+            self.driver.get('https://trends.google.com/trends/explore?date=now%201-H&geo=US-NJ-501&q=stock')
+        elif(self.target == "Dallas-FT. Worth TX"):
+            self.driver.get('https://trends.google.com/trends/explore?date=now%201-H&geo=US-TX-623&q=stock')
+        elif(self.target == "Chicago IL"):
+            self.driver.get('https://trends.google.com/trends/explore?date=now%201-H&geo=US-IL-602&q=stock')
 
         # Wait 10 seconds to ensure that the webpage loads completely
         time.sleep(10)
@@ -60,6 +71,7 @@ class TrendScraper():
             self.relatedData.append(self.relatedDataEntry)
         except:
             print("Could not get 1st related element")
+            self.relatedData.append(self.relatedDataEntry)
 
         self.relatedDataEntry = []
 
@@ -74,6 +86,7 @@ class TrendScraper():
             self.relatedData.append(self.relatedDataEntry)
         except:
             print("Could not get 2nd related element")
+            self.relatedData.append(self.relatedDataEntry)
 
         self.relatedDataEntry = []
 
@@ -88,6 +101,7 @@ class TrendScraper():
             self.relatedData.append(self.relatedDataEntry)
         except:
             print("Could not get 3rd related element")
+            self.relatedData.append(self.relatedDataEntry)
 
         self.relatedDataEntry = []
 
@@ -102,6 +116,7 @@ class TrendScraper():
             self.relatedData.append(self.relatedDataEntry)
         except:
             print("Could not get 4th related element")
+            self.relatedData.append(self.relatedDataEntry)
 
         self.relatedDataEntry = []
 
@@ -116,6 +131,7 @@ class TrendScraper():
             self.relatedData.append(self.relatedDataEntry)
         except:
             print("Could not get 5th related element")
+            self.relatedData.append(self.relatedDataEntry)
 
         # select the next arrow and click it
 
@@ -138,6 +154,7 @@ class TrendScraper():
             self.relatedData.append(self.relatedDataEntry)
         except:
             print("Could not get 6th related element")
+            self.relatedData.append(self.relatedDataEntry)
 
         self.relatedDataEntry = []
 
@@ -152,6 +169,7 @@ class TrendScraper():
             self.relatedData.append(self.relatedDataEntry)
         except:
             print("Could not get 7th related element")
+            self.relatedData.append(self.relatedDataEntry)
 
         self.relatedDataEntry = []
 
@@ -166,6 +184,7 @@ class TrendScraper():
             self.relatedData.append(self.relatedDataEntry)
         except:
             print("Could not get 8th related element")
+            self.relatedData.append(self.relatedDataEntry)
 
         self.relatedDataEntry = []
 
@@ -180,6 +199,7 @@ class TrendScraper():
             self.relatedData.append(self.relatedDataEntry)
         except:
             print("Could not get 9th related element")
+            self.relatedData.append(self.relatedDataEntry)
 
         self.relatedDataEntry = []
 
@@ -194,6 +214,7 @@ class TrendScraper():
             self.relatedData.append(self.relatedDataEntry)
         except:
             print("Could not get 10th related element")
+            self.relatedData.append(self.relatedDataEntry)
 
             
         return self.relatedData
