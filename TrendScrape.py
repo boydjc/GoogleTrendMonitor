@@ -46,12 +46,13 @@ class TrendScraper():
             self.driver.get('https://trends.google.com/trends/explore?date=now%201-H&geo=US-IL-602&q=stock')
 
         # Wait 10 seconds to ensure that the webpage loads completely
-        time.sleep(10)
+        time.sleep(5)
 
+        print("Performing initial refresh")
         self.refreshPage()
 
         # make sure the site loads completely
-        time.sleep(10)
+        time.sleep(5)
 
     def getRelatedData(self):
 

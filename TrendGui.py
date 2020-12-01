@@ -84,7 +84,7 @@ def main():
     trendCtrl = TrendCtrl(trendGui)
     trendCtrl.display()
 
-    #executre Trend Program Application
+    #execute Trend Program Application
     sys.exit(trendProgram.exec())
     
 if __name__ == '__main__':

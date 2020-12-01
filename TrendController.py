@@ -44,7 +44,9 @@ class TrendCtrl():
             if not(self.checkInDict(entry[0])):
                 self.domDict.update({entry[0]:[entry[1], 0]})
             else:
-                if(entryCount == 0):
+                self.domDict.update({entry[0]:[entry[1], self.domDict[entry[0]][1]]})
+                # don't let the dominance count exceed 100
+                if(entryCount == 0 and self.domDict[entry[0]][1] <= 100):
                     # incrememnt the dominance of the first entry since it will be in the highest spot
                     self.domDict[entry[0]][1] += 1
                 else:
@@ -147,4 +149,4 @@ class TrendThread(QThread):
         while(self.threadRunning):
             self.updateTableSig.emit(self.trender.getRelatedData())
             self.trender.refreshPage()
-            time.sleep(10)
+            time.sleep(5)
