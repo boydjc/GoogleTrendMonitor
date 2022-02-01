@@ -12,7 +12,7 @@ class TrendScraper():
         self.options.headless = True  # make the driver headless so that it does not require a browser window
 
         # path that we want selenium to download file to
-        self.downloadPath = 'C:\\Users\\charl\\Desktop\\GoogleTrendMonitor'
+        self.downloadPath = './'
 
         # initializing the webdriver with the executable path of geckodriver
         self.profile = FirefoxProfile()
@@ -23,7 +23,7 @@ class TrendScraper():
 
         self.target = target
 
-        self.driver = webdriver.Firefox(options=self.options, firefox_profile=self.profile, executable_path='C:\\Users\\charl\\Desktop\\GoogleTrendMonitor\\geckodriver.exe')
+        self.driver = webdriver.Firefox(options=self.options, firefox_profile=self.profile, executable_path='./geckodriver')
 
         self.scanStarted = False
 
